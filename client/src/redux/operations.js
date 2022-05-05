@@ -24,7 +24,7 @@ export const registerUser = (formValues, profile) => {
         return { isRegistered: true };
       })
       .catch((error) => {
-        toast(error.response.data, { type: "error" });
+        toast(error, { type: "error" });
         return { isRegistered: false };
       });
   };
