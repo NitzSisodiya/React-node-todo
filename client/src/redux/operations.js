@@ -12,7 +12,7 @@ export const registerUser = (formValues, profile) => {
   formData.append("profile", profile);
   return async (dispatch) => {
     await axios
-      .post("http://localhost:7000/signup", formData)
+      .post("/signup", formData)
       .then((res) => {
         localStorage.setItem("Token", res.data.token);
         localStorage.setItem("id", res.data.id);
