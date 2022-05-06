@@ -38,7 +38,7 @@ function UserToDo() {
   };
 
   const validation = () => {
-    if (inputValue === "") {
+    if (inputValue.trim() === "") {
       setErr("write a todo...");
     } else if (toggleButton) {
       dispatch(

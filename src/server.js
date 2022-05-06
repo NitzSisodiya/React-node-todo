@@ -4,6 +4,7 @@ const path = require("path");
 
 const dotenv = require("dotenv");
 dotenv.config();
+const host = "0.0.0.0";
 const port = process.env.PORT || 8000;
 
 const routers = require("./routers");
@@ -23,6 +24,6 @@ app.get("*", function (request, response) {
   response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
-app.listen(port, () => {
+app.listen(port,host, () => {
   console.log(`Server is crreated ${port}`);
 });
