@@ -12,7 +12,7 @@ export const registerUser = (formValues, profile) => {
   formData.append("profile", profile);
   return async (dispatch) => {
     await axios
-      .post("http://localhost:7000/signup", formData)
+      .post("/signup", formData)
       .then((res) => {
         localStorage.setItem("Token", res.data.token);
         localStorage.setItem("id", res.data.id);
@@ -33,7 +33,7 @@ export const registerUser = (formValues, profile) => {
 export const getUserProfile = (id) => {
   return async (dispatch) => {
     await axios
-      .get(`http://localhost:7000/profile/${id}`)
+      .get(`/profile/${id}`)
       .then((response) => {
         const user = response.data;
         dispatch(getUser(user));
@@ -47,7 +47,7 @@ export const getUserProfile = (id) => {
 export const userLogin = (user) => {
   return async (dispatch) => {
     await axios
-      .post("http://localhost:7000/login", user)
+      .post("/login", user)
       .then((res) => {
         localStorage.setItem("Token", res.data.token);
         localStorage.setItem("id", res.data.id);
@@ -65,7 +65,7 @@ export const userLogin = (user) => {
 
 export const addUSerTodo = (id, todo) => {
   const options = {
-    url: "http://localhost:7000/addtodo",
+    url: "/addtodo",
     method: "post",
     headers: {
       Authorization: localStorage.getItem("Token"),
@@ -89,7 +89,7 @@ export const addUSerTodo = (id, todo) => {
 
 export const toDoEdit = (id, todo) => {
   const options = {
-    url: "http://localhost:7000/edittodo",
+    url: "/edittodo",
     method: "put",
     headers: {
       Authorization: localStorage.getItem("Token"),
@@ -111,7 +111,7 @@ export const toDoEdit = (id, todo) => {
 };
 export const deleteToDo = (id) => {
   const options = {
-    url: `http://localhost:7000/deletetodo/${id}`,
+    url: `/deletetodo/${id}`,
     method: "delete",
     headers: {
       Authorization: localStorage.getItem("Token"),
@@ -130,7 +130,7 @@ export const deleteToDo = (id) => {
 
 export const statusOfToDo = (id, userId, status) => {
   const options = {
-    url: "http://localhost:7000/updatestatus",
+    url: "/updatestatus",
     method: "put",
     headers: {
       Authorization: localStorage.getItem("Token"),
@@ -153,7 +153,7 @@ export const statusOfToDo = (id, userId, status) => {
 
 export const fetchToDoList = (userId) => {
   const options = {
-    url: `http://localhost:7000/fetchlist/${userId}`,
+    url: `/fetchlist/${userId}`,
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("Token"),
@@ -173,7 +173,7 @@ export const fetchToDoList = (userId) => {
 
 export const uploadProfile = (id, data) => {
   const options = {
-    url: `http://localhost:7000/uploadprofile/${id}`,
+    url: `/uploadprofile/${id}`,
     method: "put",
     headers: {
       Authorization: localStorage.getItem("Token"),
@@ -196,7 +196,7 @@ export const uploadProfile = (id, data) => {
 
 export const removeProfile = (id, data) => {
   const options = {
-    url: `http://localhost:7000/uploadprofile/${id}`,
+    url: `/uploadprofile/${id}`,
     method: "put",
     headers: {
       Authorization: localStorage.getItem("Token"),
