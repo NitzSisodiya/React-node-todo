@@ -12,14 +12,14 @@ function Profile() {
     dispatch(getUserProfile(user_id));
   }, []);
 
-  const [profile, setProfile] = useState(user.profile);
+  const [profile, setProfile] = useState("");
 
   const selectProfile = (e) => {
     setProfile(e.target.files[0]);
   };
 
   const changeProfile = (user_id) => {
-    if (profile !== user.profile) {
+    if (profile !== "") {
       var formData = new FormData();
       formData.append("profile", profile);
       dispatch(uploadProfile(user_id, formData));
