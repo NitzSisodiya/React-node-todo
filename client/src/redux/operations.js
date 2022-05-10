@@ -181,7 +181,6 @@ export const uploadProfile = (id, data) => {
 
     data,
   };
-
   return async (dispatch) => {
     try {
       const res = await axios(options);
