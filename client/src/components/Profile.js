@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 import { getUserProfile, uploadProfile } from "../redux/operations";
-import Loader from "./Loader"
+import Loader from "./Loader";
 
 function Profile() {
+  const ref = useRef();
   const user_id = localStorage.getItem("id");
   const dispatch = useDispatch();
-  const {user, loading } = useSelector((state) => state.TodoReducer);
+  const { user, loading } = useSelector((state) => state.TodoReducer);
   useEffect(() => {
     dispatch(getUserProfile(user_id));
   }, []);
@@ -24,6 +25,8 @@ function Profile() {
       var formData = new FormData();
       formData.append("profile", profile);
       dispatch(uploadProfile(user_id, formData));
+      setProfile("")
+      ref.current.value = "";
     }
   };
 
@@ -34,7 +37,7 @@ function Profile() {
         {user.name}-Profile
         <div className="image ">
           {loading ? (
-            <Loader/>
+            <Loader />
           ) : (
             <>
               <img
@@ -53,6 +56,7 @@ function Profile() {
             className=""
             name="profile"
             filename="profile"
+            ref={ref}
             onChange={selectProfile}
           />
         </div>
