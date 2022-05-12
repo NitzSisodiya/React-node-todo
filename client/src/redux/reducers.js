@@ -2,6 +2,7 @@ import {
   ADD_TODO,
   DELETE_TODO,
   STATUS,
+  TODO_REQUEST,
   TODO_SUCCESS,
   EDIT_TODO,
   GET_USER,
@@ -28,6 +29,12 @@ const TodoReducer = (state = initialState, action) => {
       return {
         ...state,
         list: updatedList,
+      };
+
+    case TODO_REQUEST:
+      return {
+        ...state,
+        loading: true,
       };
 
     case TODO_SUCCESS:
@@ -62,6 +69,7 @@ const TodoReducer = (state = initialState, action) => {
     case GET_USER:
       return {
         ...state,
+        loading: false,
         user: { ...action.payload },
       };
 

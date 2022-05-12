@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 import { getUserProfile, uploadProfile } from "../redux/operations";
+import Loader from "./Loader"
 
 function Profile() {
   const user_id = localStorage.getItem("id");
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.TodoReducer.user);
+  const {user, loading } = useSelector((state) => state.TodoReducer);
   useEffect(() => {
     dispatch(getUserProfile(user_id));
   }, []);
@@ -32,12 +33,18 @@ function Profile() {
         {" "}
         {user.name}-Profile
         <div className="image ">
-          <img
-            className="border border-dark rounded"
-            src={user.profile}
-            height={180}
-            width={150}
-          ></img>
+          {loading ? (
+            <Loader/>
+          ) : (
+            <>
+              <img
+                className="border border-dark rounded"
+                src={user.profile}
+                height={180}
+                width={150}
+              ></img>
+            </>
+          )}
         </div>
         <div className=" text-center m-2">
           {" "}
